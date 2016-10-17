@@ -14,15 +14,33 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.dao.BlogDAO;
+import com.niit.dao.BlogDAOImpl;
+import com.niit.dao.ChatDAO;
+import com.niit.dao.ChatDAOImpl;
+import com.niit.dao.EventDAO;
+import com.niit.dao.EventDAOImpl;
+import com.niit.dao.ForumDAO;
+import com.niit.dao.ForumDAOImpl;
+import com.niit.dao.JobDAO;
+import com.niit.dao.JobDAOImpl;
 import com.niit.dao.UserDAO;
 import com.niit.dao.UserDAOImpl;
+import com.niit.model.BaseDomain;
+import com.niit.model.Blog;
+import com.niit.model.Blog_Comment;
+import com.niit.model.Chat;
+import com.niit.model.Event;
+import com.niit.model.Forum;
+import com.niit.model.Forum_Comment;
+import com.niit.model.Friend;
+import com.niit.model.Job;
 import com.niit.model.User;
 
 
 @Configuration
 @ComponentScan("com.niit")
 @EnableTransactionManagement
-
 public class ApplicationContextConfig {
 	
 	@Bean(name = "dataSource")                               
@@ -54,6 +72,15 @@ public class ApplicationContextConfig {
 		  LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);  //sessionBuilder can b any other name too
 		 // sessionBuilder.addProperties(getHibernateProperties());
 		 sessionBuilder.addAnnotatedClass(User.class);
+		 sessionBuilder.addAnnotatedClass(Blog.class);
+		 sessionBuilder.addAnnotatedClass(BaseDomain.class);
+		 sessionBuilder.addAnnotatedClass(Blog_Comment.class);
+		 //sessionBuilder.addAnnotatedClass(Chat.class);
+		 //sessionBuilder.addAnnotatedClass(Event.class);
+		// sessionBuilder.addAnnotatedClass(Forum_Comment.class);
+		// sessionBuilder.addAnnotatedClass(Forum.class);
+		 //sessionBuilder.addAnnotatedClass(Friend.class);
+		// sessionBuilder.addAnnotatedClass(Job.class);
 		  return sessionBuilder.buildSessionFactory();
 		}
 
@@ -78,9 +105,44 @@ public class ApplicationContextConfig {
 			return new UserDAOImpl(sessionFactory);
 		}
 		
-		
 
+		@Autowired
+		@Bean(name = "blog")
+            public Blog getBlog (){
+			return new Blog();
+		}
 		
+		
+		@Autowired
+		@Bean(name = "blogDAO")
+            public BlogDAO getBlogDAO (SessionFactory sessionFactory){
+			return new BlogDAOImpl(sessionFactory);
+		}
+		
+		@Autowired
+		@Bean(name = "jobDAO")
+            public JobDAO getJobDAO (SessionFactory sessionFactory){
+			return new JobDAOImpl(sessionFactory);
+		}
+
+		@Autowired
+		@Bean(name = "chatDAO")
+            public ChatDAO getChatDAO (SessionFactory sessionFactory){
+			return new ChatDAOImpl(sessionFactory);
+		}
+
+		@Autowired
+		@Bean(name = "eventDAO")
+            public EventDAO getEventDAO (SessionFactory sessionFactory){
+			return new EventDAOImpl(sessionFactory);
+		}
+
+		@Autowired
+		@Bean(name = "forumDAO")
+            public ForumDAO getForumDAO (SessionFactory sessionFactory){
+			return new ForumDAOImpl(sessionFactory);
+		}
+
 }
 
 
