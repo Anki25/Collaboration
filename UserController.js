@@ -81,6 +81,12 @@ app.controller('UserController', [ '$scope', 'UserService', '$location',
 					}
 				}
 			};
-			self.remove	
-			
-			
+			self.remove=function(id){
+				console.log('id to be deleted',id);
+				if(self.user.id==id){
+				self.reset();	
+				}
+				self.deleteUser(id);
+			}
+
+						
