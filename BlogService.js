@@ -10,6 +10,8 @@ app.factory('BlogService',['$http','$q','$rootScope',function($http,$q,$rootScop
 	var BASE_URL='http://localhost:2222/ColBackEnd'
 		return{
 		
+		/* GET LIST OF ALL BLOGS */
+		
 fetchAllBlogs:function(){
 			return $http.get(BASE_URL+'/blogs')
 			.then(
@@ -22,6 +24,8 @@ fetchAllBlogs:function(){
 					}				
 	);
 },
+
+/* CREATE A BLOG */
 
 createBlog:function(blog){
 	return $http.post(BASE_URL+'/blog',blog)
@@ -36,6 +40,8 @@ createBlog:function(blog){
 );
 },
 
+/* UPDATE A BLOG */
+
 updateBlog:function(blog,id){
 	return $http.put(BASE_URL+'/blog/'+id,blog)
 	.then(
@@ -49,6 +55,8 @@ updateBlog:function(blog,id){
 );
 },
 
+/* DELETE A BLOG */
+
 deleteBlog:function(id){
 	return $http.delete(BASE_URL+'/blog/'+id)
 	.then(
@@ -61,6 +69,8 @@ deleteBlog:function(id){
 			}				
 );
 },
+
+/* GET SELECTED BLOG DETAILS */
 
 getBlog: function(id){
 	return $http.get(BASE_URL+'/blog/'+id)
