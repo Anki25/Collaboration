@@ -1,4 +1,4 @@
-var app=angular.module('myApp',['ngroute']);
+var app=angular.module('myApp',['ngRoute']);
 
 app.config(function($routeProvider){
 	$routeProvider
@@ -8,15 +8,19 @@ app.config(function($routeProvider){
 		controller:'HomeController'
 	})
 	
-	.when('/job_opportunities',{
-		templateUrl:'c_job/job.html',
-		controller:'JobController'
-	})
-	
 	.when('/manageUser',{
 		templateUrl:'c_admin/manage_users.html',
 		controller:'AdminController'
 	})
+	
+	.when('/about',{
+		templateUrl:'c_about/AboutUs.html',
+	})
+	
+	.when('/contact',{
+		templateUrl:'c_about/ContactUs.html',
+	})
+
 	
 	/*
 	 * EVENT
@@ -27,11 +31,6 @@ app.config(function($routeProvider){
 		controller:'EventController'
 	})
 		
-	.when('/about',{
-		templateUrl:'c_about/AboutUs.html',
-		controller:'AboutController'
-	})
-	
 	.when('/login',{
 		templateUrl:'c_user/login.html',
 		controller:'UserController'
@@ -39,7 +38,7 @@ app.config(function($routeProvider){
 	
 	.when('/register',{
 		templateUrl:'c_user/register.html',
-		controller:'UserController'
+		
 	})
 	
 	/**
@@ -104,5 +103,35 @@ app.config(function($routeProvider){
 		controller:'ForumController'
 	})
 	
+	.when('/my_forum',{
+		templateUrl:'c_forum/my_forum.html',
+		controller:'ForumController'
+	})
+	
+	/**
+	 * JOB RELATED MAPPING
+	 **/
+	
+	.when('/create_job',{
+		templateUrl:'c_job/create_job.html',
+		controller:'JobController'
+	})
+	
+	.when('/list_job',{
+		templateUrl:'c_job/list_job.html',
+		controller:'JobController'
+	})
+	
+	.when('/view_job',{
+		templateUrl:'c_job/view_job.html',
+		controller:'JobController'
+	})
+	
+	.when('/my_job',{
+		templateUrl:'c_job/my_job.html',
+		controller:'JobController'
+	})
+	
 	.otherwise({redirectTo: '/'});
-})
+
+});
