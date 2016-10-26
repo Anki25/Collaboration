@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
+<html >
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
 <body>
+<div ng-app="myApp" class="container" ng-controller="BlogController as ctrl">
+Welcome to blogs
+<div ng-repeat="blog in ctrl.blogs">
+<a href="#" ng-click="ctrl.getSelectedBlog(blog.blog_id)">Title:{{blog.blog_title}}</a>
+</div>
+</div>
 
+<script src="app.js"></script>
+<script src="c_blog/BlogController.js"></script>
+ <script src="c_blog/BlogService.js"></script>
 </body>
 </html>

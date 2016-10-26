@@ -7,9 +7,10 @@ app.factory('BlogService',['$http','$q','$rootScope',function($http,$q,$rootScop
 	
 	console.log("BlogService..")
 	
-	var BASE_URL='http://localhost:8081/ColBackEnd'
+	var BASE_URL='http://localhost:2222/ColBackEnd'
 		return{
-		fetchAllBlogs:function(){
+		
+fetchAllBlogs:function(){
 			return $http.get(BASE_URL+'/blogs')
 			.then(
 					function(response){
@@ -21,6 +22,7 @@ app.factory('BlogService',['$http','$q','$rootScope',function($http,$q,$rootScop
 					}				
 	);
 },
+
 createBlog:function(blog){
 	return $http.post(BASE_URL+'/blog',blog)
 	.then(
@@ -32,8 +34,8 @@ createBlog:function(blog){
 				return $q.reject(errResponse);
 			}				
 );
-	
 },
+
 updateBlog:function(blog,id){
 	return $http.put(BASE_URL+'/blog/'+id,blog)
 	.then(
@@ -46,6 +48,7 @@ updateBlog:function(blog,id){
 			}				
 );
 },
+
 deleteBlog:function(id){
 	return $http.delete(BASE_URL+'/blog/'+id)
 	.then(
@@ -58,6 +61,7 @@ deleteBlog:function(id){
 			}				
 );
 },
+
 getBlog: function(id){
 	return $http.get(BASE_URL+'/blog/'+id)
 	.then(
@@ -71,7 +75,7 @@ getBlog: function(id){
 			}				
 );
 },
-}
+};
 	
 }
 

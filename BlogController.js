@@ -6,8 +6,8 @@
 app.controller('BlogController', [ '$scope', 'BlogService', '$location',
 		'$rootScope', function($scope, BlogService, $location, $rootScope) {
 			console.log("BlogController...")
-			var self = this;
-			self.blog = {
+			var self = this; //self is alias name instead directly use this
+			self.blog = {  //initialization
 				blog_id : '',
 				blog_title : '',
 				creation_date : '',
@@ -21,7 +21,7 @@ app.controller('BlogController', [ '$scope', 'BlogService', '$location',
 			
 			function getBlog(id){
 				console.log("getting blog! " + blog_id)
-				BlpgService.getBlog(id)
+				BlogService.getBlog(id)
 				.then(
 						function(d){
 							self.blog=d;
@@ -34,9 +34,10 @@ app.controller('BlogController', [ '$scope', 'BlogService', '$location',
 			};
 			
 self.fetchAllBlogs=function(){
-	BlogService.fetchAllBlogs()
+	
+BlogService.fetchAllBlogs()
 	.then(
-			function(d){
+			function(d){  //these methods are called call back methods
 				self.blogs=d;
 			},
 			function(errResponse){
@@ -44,7 +45,7 @@ self.fetchAllBlogs=function(){
 			}
 );
 };
-self.createBlog=function(blog){
+/*self.createBlog=function(blog){
 	BlogService.createBlog(blog)
 	.then(
 			self.fetchAllBlogs,
@@ -53,6 +54,7 @@ self.createBlog=function(blog){
 			}
 );
 };
+
 self.updateBlog=function(blog){
 	BlogService.updateBlog(blog)
 	.then(
@@ -62,6 +64,7 @@ self.updateBlog=function(blog){
 			}
 );
 };
+
 self.deleteBlog=function(id){
 	BlogService.deleteBlog(id)
 	.then(
@@ -71,8 +74,10 @@ self.deleteBlog=function(id){
 			}
 );
 };
+*/
 self.fetchAllBlogs();
-self.submit=function(){
+
+/*self.submit=function(){
 	if(self.blog.blog_id==null){
 		console.log('Saving New Blog',self.blog);
 		self.blog.user_name=$rootScope.currentUser.id
@@ -80,3 +85,6 @@ self.submit=function(){
 	}
 	self.reset();
 };
+*/}
+]
+);
