@@ -87,6 +87,9 @@ app.controller('UserController', [ '$scope', 'UserService', '$location',
 				self.reset();	
 				}
 				self.deleteUser(id);
-			}
+			};
+}
+]
+);
 
 						

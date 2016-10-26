@@ -7,7 +7,7 @@ app.factory('UserService',['$http','$q','$rootScope',function($http,$q,$rootScop
 	
 	console.log("UserService..")
 	
-	var BASE_URL='http://localhost:8081/ColBackEnd'
+	var BASE_URL='http://localhost:2222/ColBackEnd'
 		return{
 		fetchAllUsers:function(){
 			return $http.get(BASE_URL+'/users')
