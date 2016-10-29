@@ -1,0 +1,43 @@
+<div>
+<div ng-show='ctrl.event.errorMessage!=""'>
+<div class="alert alert-danger fade in">Error:
+{{ctrl.event.errorMessage}}</div>
+</div>
+
+<div class="panel panel-default">
+<div class="panel heading">
+<span class="lead">Create your event</span>
+</div>
+<div class="formcontainer">
+<form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+<div class="row">
+<div class="form-group col-md-12">
+<label class="col-md-2 control-lable" for="event_title">Title</label>
+<div class="col-md-7">
+<input type="text" width="100" height="50" ng-model="" id="name"
+class="form-control input-sm" placeholder="Name your event">
+</div>
+</div>
+</div>
+
+<br><br>
+<div class="row">
+<div class="form-group col-md-12">
+<label class="col-md-2 control-lable" for="info">info</label>
+<div class="col-md-7">
+<textarea rows="4" column="5" width="100" height="50" ng-model="ctrl.event.info" id="info"
+class="form-control input-sm" />
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="form-actions floatRight">
+<input type="submit" value="Register" class="btn btn-primary btn-sm">
+<button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm">Reset Form</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>

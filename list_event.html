@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html >
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
+<body>
+<div class="container" ng-controller="EventController as ctrl">
+Welcome to events
+<div ng-repeat="event in ctrl.events">
+<a href="#/view_event" ng-click="ctrl.getSelectedEvent(event.event_id)">Title:{{event.event_title}}</a>
+</div>
+</div>
+
+<script src="app.js"></script>
+<script src="c_event/EventController.js"></script>
+ <script src="c_event/EventService.js"></script>
+</body>
+</html>
