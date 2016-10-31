@@ -1,0 +1,11 @@
+
+<div class="container" ng-controller="JobController as ctrl">
+Welcome to jobs
+<div ng-repeat="job in ctrl.jobs">
+<a href="#/view_job" ng-click="ctrl.getSelectedJob(job.job_id)">Title:{{job.details}}</a>
+</div>
+</div>
+
+<script src="app.js"></script>
+<script src="c_job/JobController.js"></script>
+ <script src="c_job/JobService.js"></script>
