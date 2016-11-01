@@ -17,6 +17,8 @@ app.controller('EventController', [
 				creation_date : '',
 				info : '',
 				user_name : '',
+				errorCode:'',
+				errorMessage:''
 			};
 			self.events = [];
 			
@@ -25,7 +27,7 @@ app.controller('EventController', [
 			self.getSelectedEvent = getEvent
 
 			function getEvent(id) {
-				console.log("getting event! " + event_id)
+				console.log("getting event! " + id)
 				EventService.getEvent(id).then(function(d) {
 					self.event = d;
 					$location.path('/view_event');
@@ -37,10 +39,9 @@ app.controller('EventController', [
 			/* GET LIST OF ALL EVENTS */
 
 			self.fetchAllEvents = function() {
-				EventService.fetchAllEvents().then(function(d) { // these methods
-																// are called
-																// call back
-																// methods
+				console.log("getting list of events")
+				EventService.fetchAllEvents()
+				.then(function(d) { // these methods are called call back methods
 					self.events = d;
 				}, function(errResponse) {
 					console.error('Error while fetching Events');
