@@ -25,11 +25,11 @@ fetchAllJobs:function(){
 	);
 },
 
-/*self.fetchAllJobs();*/
 
 /* CREATE A JOB */
 
 createJob:function(job){
+	console.log('caling create job in jobService')
 	return $http.post(BASE_URL+'/job/',job)
 	.then(
 			function(response){

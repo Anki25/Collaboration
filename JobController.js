@@ -5,7 +5,7 @@
 
 app.controller('JobController', [
 		'$scope',
-		'JobService',
+		'JobService','UserService',
 		'$location',
 		'$rootScope',
 		function($scope, JobService, $location, $rootScope) {
@@ -30,7 +30,9 @@ app.controller('JobController', [
 			self.applyForJob=applyForJob
 			
 			function applyForJob(jobID){
+				console.log("calling method applyForJob");
 				var currentUser=$rootScope.currentUser
+				console.log("currentUser.user_id:" + currentUser.user_id)
 				if(typeof currentUser=='undefined')
 					{
 					alert("Please login to apply for job")
@@ -65,11 +67,9 @@ app.controller('JobController', [
 			/* GET LIST OF ALL JOBS */
 
 			self.fetchAllJobs = function() {
+				console.log("getting list of jobs")
 				JobService.fetchAllJobs()
-				.then(function(d) { // these methods
-																// are called
-																// call back
-																// methods
+				.then(function(d) { 
 					self.jobs = d;
 				}, function(errResponse) {
 					console.error('Error while fetching Jobs');
@@ -137,16 +137,16 @@ self.selectUser = function(userID) {
 };
 
 self.submit = function() {
-	if (self.job.job_id == null) {
+	//self.job.user_id = $rootScope.currentUser.user_id;
 		console.log('Saving New Job', self.job);
-		//self.job.user_name = $rootScope.currentUser.user_id
-		self.createjob(self.job);
-	}
+		
+		self.createJob(self.job);
 	self.reset();
 };
 
+
 self.reset=function(){
-	console.log('submit a new job',self.job);
+	console.log('resetting the job',self.job);
 	self.job={
 			job_id : '',
 			user_id:'',
