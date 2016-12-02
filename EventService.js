@@ -33,6 +33,7 @@ fetchAllEvents:function(){
 /* CREATE A EVENT */
 
 createEvent:function(event){
+	console.log('caling create event in eventService')
 	return $http.post(BASE_URL+'/event/',event)
 	.then(
 			function(response){

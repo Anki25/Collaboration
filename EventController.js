@@ -52,7 +52,11 @@ app.controller('EventController', [
 			/* CREATE A EVENT */
 
 			self.createEvent = function(event) {
-				EventService.createEvent(event).then(self.fetchAllEvents,
+				console.log('submit a new event',self.event);
+				EventService.createEvent(event)
+				.then(function(d){
+				   self.event=d;	
+				},
 						function(errResponse) {
 							console.error('Error while creating Events');
 						});
@@ -79,13 +83,27 @@ app.controller('EventController', [
 			/* ON CLICKING SUBMIT BUTTON */
 
 			self.submit = function() {
-				if (self.event.event_id == null) {
+				
 					console.log('Saving New Event', self.event);
-					self.event.user_name = $rootScope.currentUser.user_id
-					self.createevent(self.event);
-				}
+					self.event.user_name = $rootScope.currentUser.user_name
+					self.createEvent(self.event);
+				
 				self.reset();
 			};
+			
+			self.reset=function(){
+				console.log('resetting the event',self.event);
+				self.event={
+						event_id : '',
+						event_title : '',
+						creation_date : '',
+						info : '',
+						user_name : '',
+						errorCode:'',
+						errorMessage:''
+					};
+				}
+
 
 			/* END OF ALL */
 
