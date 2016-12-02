@@ -18,6 +18,8 @@ app.controller('BlogController', [
 				status : '',
 				description : '',
 				user_name : '',
+				errorCode:'',
+				errorMessage:''
 			};
 			self.blogs = [];
 			
@@ -26,15 +28,14 @@ app.controller('BlogController', [
 			self.getSelectedBlog = getBlog
 
 			function getBlog(id) {
-				console.log("getting blog! " + blog_id)
+				console.log("getting blog in Controller! " + id)
 				BlogService.getBlog(id).then(function(d) {
 					self.blog = d;
 					$location.path('/view_blog');
 				}, function(errResponse) {
 					console.error('Error while fetching blogs');
 				});
-			}
-			;
+			};
 
 			/* GET LIST OF ALL BLOGS */
 
@@ -80,13 +81,26 @@ app.controller('BlogController', [
 			/* ON CLICKING SUBMIT BUTTON */
 
 			self.submit = function() {
-				if (self.blog.blog_id == null) {
-					console.log('Saving New Blog', self.blog);
 					self.blog.user_name = $rootScope.currentUser.user_id
-					self.createblog(self.blog);
-				}
+					self.createBlog(self.blog);
+				
 				self.reset();
 			};
+			
+			self.reset=function(){
+				console.log('resetting the blog',self.blog);
+				self.blog={
+						blog_id : '',
+						blog_title : '',
+						creation_date : '',
+						status : '',
+						description : '',
+						user_name : '',
+						errorCode:'',
+						errorMessage:''
+					};
+				}
+
 
 			/* END OF ALL */
 

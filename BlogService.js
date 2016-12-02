@@ -28,7 +28,7 @@ fetchAllBlogs:function(){
 /* CREATE A BLOG */
 
 createBlog:function(blog){
-	return $http.post(BASE_URL+'/blog',blog)
+	return $http.post(BASE_URL+'/blog/',blog)
 	.then(
 			function(response){
 				return response.data;
@@ -43,7 +43,7 @@ createBlog:function(blog){
 /* UPDATE A BLOG */
 
 updateBlog:function(blog,id){
-	return $http.put(BASE_URL+'/blog/'+id,blog)
+	return $http.put(BASE_URL+'/blog/'+id,blog)  //blog is json object
 	.then(
 			function(response){
 				return response.data;
@@ -76,6 +76,7 @@ getBlog: function(id){
 	return $http.get(BASE_URL+'/blog/'+id)
 	.then(
 			function(response){
+				console.log("getting blog in service! " + id)
 				$rootScope.selectedBlog=response.data
 				return response.data;
 			},
