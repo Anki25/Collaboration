@@ -1,0 +1,16 @@
+
+<div class="container" ng-controller="BlogController as ctrl">
+<div class="form-group">
+<label>{{selectedBlog.blog_id}}</label>
+<br>
+Written By:<label>{{selectedBlog.user_name}}</label>
+on <label>{{selectedBlog.creation_date}}</label>
+<br>
+<br>
+<label>{{selectedBlog.blog_title}}</label>
+<p>{{selectedBlog.description}}</p>
+<button type="button" ng-click="ctrl.applyForEvent(selectedEvent.event_id)" 
+class="btn btn-warning btn-sm">Comment</button>
+
+</div>
+</div>
