@@ -20,7 +20,8 @@ app.controller('UserController', [
 				email : '',
 				role : '',
 				isOnline:'',
-				errorMessage : ''
+				errorMessage : '',
+				errorCode:''
 			};
 			self.users = [];
 
@@ -102,9 +103,9 @@ app.controller('UserController', [
 				console.log('Logging out');
 				UserService.logout()
 				.then(function() {
-					if ($rootScope.currentUser='') {
-						
-						alert("You have successfully logged out!")
+					if (self.errorCode==200) {
+						console.log("You have successfully logged out!");
+						alert("You have successfully logged out!");
 					}},
 						/*$rootScope.currentUser={}
 						$cookieStore.remove('currentUser');*/

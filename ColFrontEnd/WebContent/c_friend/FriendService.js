@@ -11,6 +11,19 @@ console.log('FriendService...')
 var BASE_URL='http://localhost:2222/ColBackEnd'
 	return{
 	
+	fetchAllUsers:function(){
+		return $http.get(BASE_URL+'/users')
+		.then(
+				function(response){
+					return response.data;
+				},
+				function(errResponse){
+					console.error('Error while fetching UserDetails');
+					return $q.reject(errResponse);
+				}				
+);
+},
+	
 	/*GET MY FRIENDS LIST*/
 	getMyFriends:function(){
 		return $http.get(BASE_URL+'/myFriends')

@@ -6,8 +6,8 @@
 app.controller('FriendController',['UserService','$scope','FriendService','$location','$rootScope',
                                    function($http,$q,$rootScope,FriendService,UserService){
 	console.log("FriendController....")
-	var self=this;
-	self.friend={ // initialization
+	var selfs=this;
+	selfs.friend={ // initialization
 			id : '',
 			friend_id : '',
 			friend_name:'',
@@ -17,9 +17,9 @@ app.controller('FriendController',['UserService','$scope','FriendService','$loca
 			errorCode:'',
 			errorMessage:''
 		};
-	self.friends=[];
+	selfs.friends=[];
 	
-/*	self.user = {
+	selfs.user = {
 			id : '',
 			name : '',
 			password : '',
@@ -29,10 +29,10 @@ app.controller('FriendController',['UserService','$scope','FriendService','$loca
 			role : '',
 			errorMessage : ''
 		};
-		self.users = [];
-*/
+		selfs.users = [];
+
 /*SENDING FRIEND REQUEST*/		
-self.sendFriendRequest=sendFriendRequest
+selfs.sendFriendRequest=sendFriendRequest
 
 function sendFriendRequest(friendID)
 {
@@ -40,7 +40,7 @@ console.log("sendFriendRequest:" + friendID)
 FriendService.sendFriendRequest(friendID)
 .then(
 function(d){
-	self.friend=d;
+	selfs.friend=d;
 	alert("Friend request sent")
 },function(errResponse){
 	console.error('Error while sending Friend requests');
@@ -49,12 +49,12 @@ function(d){
 };
 
 /*GET MY FRIENDS LIST*/
-self.getMyFriends=function(){
-	console.log("gettingMyFriends")
+selfs.getMyFriends=function(){
+	console.log("getting My Friends")
 	FriendService.getMyFriends()
 	.then(
 	function(d){
-		self.friends=d;
+		selfs.friends=d;
 		console.log("Got the friends list")
 	},function(errResponse){
 		console.error('Error while fetching Friend');
@@ -62,38 +62,37 @@ self.getMyFriends=function(){
 	});
 	};
 	
-self.updateFriendRequest=function(friend,id){
+selfs.updateFriendRequest=function(friend,id){
 	FriendService.updateFriendRequest(friend,id)
 	.then(
-	self.fetchAllFriends,
+	selfs.fetchAllFriends,
 	function(errResponse){
 		console.error('Error while updating Friend');
 	}
 	);
 };
 
-self.deleteFriend=function(id){
+selfs.deleteFriend=function(id){
 	FriendService.deleteFriend(id)
 	.then(
-	self.fetchAllFriends,
+	selfs.fetchAllFriends,
 	function(errResponse){
 		console.error('Error while deleting Friend');
 	}
 	);
 };
 
-self.fetchAllUsers=function(){
-	UserService.fetchAllUsers()
-	.then(function(d){
-		self.users=d;
+selfs.fetchAllUsersList=function(){
+	FriendService.fetchAllUsers().then(function(d){
+		selfs.users=d;
 	},function(errResponse){
 		console.error('Error while fetching Users');
 	}
 	);
 };
 
-self.fetchAllUsers();
-self.getMyFriends();
+selfs.fetchAllUsersList();
+selfs.getMyFriends();
 
 	/* END OF ALL */
 

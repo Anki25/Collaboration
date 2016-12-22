@@ -31,14 +31,14 @@ app.controller('JobController', [
 			
 			function applyForJob(jobID){
 				console.log("calling method applyForJob");
-				var currentUser=$rootScope.currentUser;
+				var currentUser=$rootScope.currentUser
 				console.log("currentUser.user_id:" + currentUser)
 				if(typeof currentUser=='undefined')
 					{
 					alert("Please login to apply for job")
 					console.log("User not logged in.Cannot apply")
 				
-			}
+			}else{
 			JobService
 			.applyForJob(jobID)
 			.then(
@@ -48,7 +48,7 @@ app.controller('JobController', [
 					},
 					function(errResponse){
 						console.error('Error while applying')
-					});
+					});}
 		}		
 			/*GET SELECTED JOB DETAILS*/
 
@@ -57,7 +57,11 @@ app.controller('JobController', [
 			function getJob(job_id) {
 				console.log("getting job! " + job_id)
 				JobService.getJob(job_id).then(function(d) {
-					self.job = d;					
+					self.job = d;
+					var dt=self.creation_date;
+					var dat=dt.toDateString();
+					console.log('date from backend is: ' + dt);
+					console.log('date after conversion is: ' + dat);
 				}, function(errResponse) {
 					console.error('Error while fetching jobs');
 				});
