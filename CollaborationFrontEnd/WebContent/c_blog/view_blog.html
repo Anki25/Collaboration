@@ -1,0 +1,57 @@
+<div ng-controller="BlogController as ctrl">
+<div ng-show="currentUser==''">
+<div class="alert alert-danger fade in">You are not logged in!</div>
+</div></div>
+
+<div ng-hide="currentUser==''">
+<div class="container" ng-controller="BlogController as ctrl">
+<div class="form-group">
+<label>{{selectedBlog.blog_id}}</label>
+<br>
+Written By:<label>{{selectedBlog.user_name}}</label>
+on <label>{{selectedBlog.creation_date}}</label>
+<br>
+<br>
+<label>{{selectedBlog.blog_title}}</label>
+<p>{{selectedBlog.description}}</p><br/>
+
+<button type="button" class="btn btn-default btn-sm">
+<span class="glyphicon glyphicon-thumbs-up"></span> Like
+</button>
+     
+     
+<form ng-submit="ctrl.doComment(selectedBlog.blog_id)" name="myForm" class="form-horizontal">
+
+<div class="row">
+<div class="form-group col-md-12">
+<label class="col-md-2 control-lable" for="comments">Comment</label>
+<div class="col-md-7">
+<textarea rows="6" column="200" ng-model="ctrl.blogcomment.comments" id="comments"
+class="form-control input-sm" ></textarea>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="form-actions floatRight">
+<input type="submit" value="Comment" class="btn btn-warning btn-sm">
+</div>
+</div>
+
+</form>
+
+<div ng-repeat="blogcomment in ctrl.blogcomments">
+<p><span class="glyphicon glyphicon-edit"> {{blogcomment.comments}}</span></p><br/>
+<p>By: {{blogcomment.user_name}}  On: {{blogcomment.commentDate}} </p>
+</div>
+</div>
+<!-- 
+
+<div class="container">
+<a href="#/view_blog_comment" ng-click="ctrl.getSelectedBlogComment(selectedBlog.blog_id)">See all comments</a>
+
+<div ng-view></div>
+ -->
+
+</div>
+</div>

@@ -1,0 +1,37 @@
+<div ng-controller="UserController as ctrl">
+<div ng-show="currentUser==''">
+<div class="alert alert-danger fade in">You are not logged in!</div>
+</div></div>
+
+<div class="container" ng-controller="UserController as ctrl">
+Here is the list of users
+
+<table class="table table-hover">
+             
+      <tr>
+      <th>User Id</th>
+	<th>User Name</th>
+	<th>Email</th>
+	<th>Contact</th>
+	<th>Role</th>
+	<th>Edit</th>
+	<th>Delete</th>
+  </tr>
+  <tr ng-repeat="user in ctrl.users">
+      <td>{{user.user_id}}</td>
+      <td>{{user.user_name}}</td>
+      <td>{{user.email}}</td>
+       <td>{{user.contact}}</td>
+        <td>{{user.role}}</td>
+           		
+       <td><a href="#/"><span class="glyphicon glyphicon-ok"> </span></a></td>
+       <td><a href="#/"><span class="glyphicon glyphicon-remove"> </span></a></td>
+   
+           	
+      </tr>
+  
+	 </table>
+
+
+</div>
+<br/><br/><br/><br/><br/><br/><br/><br/>

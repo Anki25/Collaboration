@@ -1,0 +1,7 @@
+<div class="container" ng-controller="BlogController as ctrl">
+
+<div ng-repeat="blogcomment in ctrl.blogcomments">
+<p><span class="glyphicon glyphicon-edit"> {{blogcomment.comments}}</span></p><br/>
+<p>By: {{blogcomment.user_name}}  On: {{blogcomment.commentDate}} </p>
+</div>
+</div>
